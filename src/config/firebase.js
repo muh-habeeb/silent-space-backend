@@ -46,6 +46,11 @@ if (!admin.apps.length) {
   }
 }
 
-const db = admin.firestore();
+let db;
+try {
+  db = admin.firestore();
+} catch (err) {
+  console.error('❌ Firestore initialization failed (missing service account).');
+}
 
 module.exports = { admin, db };
